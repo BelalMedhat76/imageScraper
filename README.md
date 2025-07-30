@@ -9,7 +9,8 @@ A Flask web app that scrapes high-resolution images from any website URL and dow
 
 ## Installation
 ```bash
-git clone https://github.com/YOUR_USERNAME/full-resolution-image-scraper.git
-cd full-resolution-image-scraper
-pip install -r requirements.txt
-python app.py
+git clone https://github.com/YOUR_USERNAME/imageScraper.git
+cd imageScraper
+python3 -m venv venv
+venv\Scripts\activate
+python3 app.py
