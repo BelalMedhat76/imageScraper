@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Full Resolution Image Scraper</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        form { margin-top: 50px; }
+        img { max-width: 100%; height: auto; margin: 10px 0; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Full Resolution Image Scraper</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter website URL" value="{{ url }}" required size="50">
+        <button type="submit">Scrape Images</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    {% if images %}
+        <h2>Found {{ images|length }} Images (Saved in 'downloads/' folder)</h2>
+        {% for img in images %}
+            <div>
+                <a href="{{ img }}" target="_blank">
+                    <img src="{{ img }}">
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Resolution Image Scraper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center px-4">
+
+    <!-- Header -->
+    <header class="w-full max-w-4xl flex justify-between items-center py-6">
+        <h1 class="text-3xl font-bold" data-aos="fade-down">Full Resolution Image Scraper</h1>
+        <button id="themeToggle" class="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:scale-110 transition">
+            🌙
+        </button>
+    </header>
+
+    <!-- Form -->
+    <form method="POST" class="w-full max-w-2xl flex gap-2 mt-4" data-aos="fade-up">
+        <input type="text" name="url" placeholder="Enter website URL" value="{{ url }}" required
+            class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button type="submit" 
+            class="px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all transform hover:scale-105">
+            Scrape Images
+        </button>
+    </form>
+
+    <!-- Error Message -->
+    {% if error %}
+        <p class="text-red-500 mt-4" data-aos="zoom-in">Error: {{ error }}</p>
+    {% endif %}
+
+    <!-- Image Gallery -->
+    {% if images %}
+        <h2 class="text-xl font-semibold mt-10" data-aos="fade-up">
+            Found {{ images|length }} Images (Saved in 'downloads/' folder)
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 w-full max-w-6xl">
+            {% for img in images %}
+                <div class="rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:scale-105 transition" data-aos="zoom-in">
+                    <a href="{{ img }}" target="_blank">
+                        <img src="{{ img }}" class="w-full h-64 object-cover">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800 });
+
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
